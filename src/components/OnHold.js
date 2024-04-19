@@ -1,45 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './OnHold.css';
 
-import { useState, useEffect } from 'react';
-
-export default function(props) {
+export function OnHold(props) {
   const [remaining, setRemaining] = useState(props.duration);
+
   useEffect(() => {
-    const _timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       setRemaining(remaining - 1);
     }, 1000);
     return function cleanup() {
-      clearTimeout(_timer);
+      clearTimeout(timer);
     };
   });
 
   if (remaining <= 1) {
     return null;
   }
+  
   return (
     <div className="OnHold">
-      Your tickets are on hold for the
-      next {remaining} seconds.
+      Your tickets are on hold for the next {remaining} seconds.
     </div>
   );
 }
 
-export class OnHold extends React.Component {
+
+export class OnHoldClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = { remaining: props.duration };
   }
 
   componentDidMount() {
-    this._timer = setInterval(() => {
+    this.timer = setInterval(() => {
       const remaining = this.state.remaining - 1;
       this.setState({ remaining });
     }, 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this._timer);
+    clearInterval(this.timer);
   }
 
   render() {
@@ -49,9 +49,8 @@ export class OnHold extends React.Component {
     }
     return (
       <div className="OnHold">
-        Your tickets are on hold for the
-        next {remaining} seconds.
+        Your tickets are on hold for the next {remaining} seconds.
       </div>
     );
   }
-};
+}

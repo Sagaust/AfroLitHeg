@@ -3,7 +3,8 @@ import './Checkout.css';
 import { AppContext } from '../AppContext';
 import { FormField, FormFieldUsingHooks } from '../components/form/FormField';
 import { FaMinusCircle } from 'react-icons/fa';
-import OnHold from '../components/OnHold';
+import { OnHold, OnHoldClass } from '../components/OnHold'; // Adjusted import
+
 import { withFieldValidation } from '../components/form/FieldValidation';
 
 const ValidatedField = withFieldValidation(FormField);
